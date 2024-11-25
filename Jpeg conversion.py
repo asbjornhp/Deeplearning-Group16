@@ -45,7 +45,7 @@ def process_dataset_with_conversion(input_dir, output_dir):
         if total_images % 64 == 0:
             print(f"Processed {total_images}/{len(dataset)} images")
 
-    print(f"JPEG conversion and compression completed for {input_dir}!")
+    print(f"JPEG conversion and compression completed for {input_dir}")
 
 process_dataset_with_conversion(input_real, output_real)
 process_dataset_with_conversion(input_fake, output_fake)
