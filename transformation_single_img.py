@@ -11,7 +11,7 @@ def resize_img(image, shape, p=1.0):
     return augmented['image']
 
 # compression function based on image type (assuming only JPEG or PNG)
-def simulate_compression(image, compress_to_jpeg=True, quality_range):
+def simulate_compression(image, quality_range, compress_to_jpeg=True):
     if compress_to_jpeg:
         # JPEG compression (lossy) 
         compress = A.ImageCompression(quality_range, compression_type='jpeg', p=1.0) # compression quality of 95%
@@ -42,7 +42,7 @@ def transform_image(img, quality_range = 95, target_size = None, compression = T
         augmented_img = resize_img(augmented_img, target_size)  
 
     if compression: 
-        augmented_img = simulate_compression(augmented_img, compress_to_jpeg)
+        augmented_img = simulate_compression(augmented_img, quality_range, compress_to_jpeg)
 
     if mask:
         augmented_img = apply_mask(augmented_img)
