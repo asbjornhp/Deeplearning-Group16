@@ -6,15 +6,27 @@ The values can then be averaged for plotting.
 
 # Importing packages
 import numpy as np
+import cv2
 
 # RAPSD and Power Spectrum
 
-def spectra(image_list, iterations):
+def spectra(image_paths):
+
+    # Load images
+    image_list = []
+    for path in image_paths:
+        try:
+            image = cv2.imread(path)
+            if image is not None:
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # convert from BGR to RGB
+                image_list.append(image)
+        except Exception as e:
+            print(f'Failed to load {path}: {e}')
 
     rapsd = []
     power_spectra = []
 
-    for k in range(iterations): 
+    for k in range(len(image_list)): 
 
         image_data = image_list[k]
 
