@@ -11,7 +11,7 @@ def resize_img(image, shape, p=1.0):
     return augmented['image']
 
 # compression function based on image type (assuming only JPEG or PNG)
-def simulate_compression(image, compress_to_jpeg=True, quality_range = 95):
+def simulate_compression(image, compress_to_jpeg=True, quality_range):
     if compress_to_jpeg:
         # JPEG compression (lossy) 
         compress = A.ImageCompression(quality_range, compression_type='jpeg', p=1.0) # compression quality of 95%
@@ -34,7 +34,7 @@ def apply_mask(image, mask_color=(0, 0, 0), precentage_masking = 0.1):
     masked_image = cv2.bitwise_and(image, mask)   
     return masked_image
 
-def transform_image(img, target_size = None, compression = True, compress_to_jpeg = True, mask = False):
+def transform_image(img, quality_range = 95, target_size = None, compression = True, compress_to_jpeg = True, mask = False):
 
     augmented_img = img # original image
 
